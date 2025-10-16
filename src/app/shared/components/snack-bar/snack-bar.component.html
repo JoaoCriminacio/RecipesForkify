@@ -1,0 +1,8 @@
+@if (visible) {
+  <div [ngClass]="{'bg-red-600': type === 'error',
+                   'bg-green-600': type === 'success',
+                   'bg-yellow-600': type === 'warning'}"
+       class="fixed bottom-8 left-1/2 transform -translate-x-1/2 text-white px-6 py-3 rounded transition-all">
+    {{ message }}
+  </div>
+}
