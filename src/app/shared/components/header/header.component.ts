@@ -1,11 +1,10 @@
 import {Component, ElementRef, output, viewChildren} from '@angular/core';
-import {NgClass, NgOptimizedImage} from '@angular/common';
+import {NgClass} from '@angular/common';
 import {recipes} from '../../models/recipe.model';
 
 @Component({
   selector: 'app-header',
   imports: [
-    NgOptimizedImage,
     NgClass
   ],
   templateUrl: './header.component.html',
