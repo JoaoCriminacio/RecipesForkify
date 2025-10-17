@@ -31,7 +31,7 @@
       <section class="w-full lg:w-2/4 h-auto lg:h-full overflow-y-auto p-4 flex flex-col gap-y-4">
         <img [src]="recipeDetail?.recipe?.image_url"
              alt="Recipe image"
-             class="w-full h-1/3 object-cover rounded-lg">
+             class="w-full h-1/2 object-cover rounded-lg">
 
         <h1 class="text-3xl text-orange-400 font-bold text-center">{{ recipeDetail?.recipe?.title }}</h1>
         <h2 class="text-lg text-center">{{ recipeDetail?.recipe?.publisher }}</h2>
@@ -39,7 +39,7 @@
         <div class="flex items-center justify-around font-base">
           <p>
             To access the recipe
-            <a [href]="recipeDetail?.recipe?.publisher_url"
+            <a [href]="recipeDetail?.recipe?.source_url"
                target="_blank"
                class="font-bold-400 text-orange-400 underline">
               click here
@@ -75,26 +75,30 @@
                          'h-2/3': recipes}">
       <h1 class="text-2xl text-orange-400 font-bold text-center">My Shopping List</h1>
 
-      <ul class="px-4">
-        @for (recipe of shoppingList; let i = $index; track recipe) {
-          <li class="flex items-center justify-between gap-y-3 p-2 my-4 border border-gray-300 rounded-lg">
-            <div class="self-start flex flex-col gap-2 max-w-[85%]">
-              <h2 class="text-base lg:text-lg text-orange-400 truncate">{{ recipe.title }}</h2>
-              <p>
-                {{ recipe.recipe }} -
-                <a class="text-sm truncate cursor-pointer underline"
-                   target="_blank"
-                   [href]="recipe.url">Click here</a>
-              </p>
-            </div>
+      @if (shoppingList.length) {
+        <ul class="px-4">
+          @for (recipe of shoppingList; let i = $index; track recipe) {
+            <li class="flex items-center justify-between gap-y-3 p-2 my-4 border border-gray-300 rounded-lg">
+              <div class="self-start flex flex-col gap-2 max-w-[85%]">
+                <h2 class="text-base lg:text-lg text-orange-400 truncate">{{ recipe.title }}</h2>
+                <p>
+                  {{ recipe.recipe }} -
+                  <a class="text-sm truncate cursor-pointer underline"
+                     target="_blank"
+                     [href]="recipe.url">Click here</a>
+                </p>
+              </div>
 
-            <button class="p-2 text-white rounded-full cursor-pointer hover:bg-gray-200 transition"
-                    (click)="removeFromShoppingList(i)">
-              <img src="./icons/trash-can.png" alt="Trash icon" class="w-5 h-5 lg:w-6 lg:h-6">
-            </button>
-          </li>
-        }
-      </ul>
+              <button class="p-2 text-white rounded-full cursor-pointer hover:bg-gray-200 transition"
+                      (click)="removeFromShoppingList(i)">
+                <img src="./icons/trash-can.png" alt="Trash icon" class="w-5 h-5 lg:w-6 lg:h-6">
+              </button>
+            </li>
+          }
+        </ul>
+      } @else {
+        <h2 class="p-4 text-lg text-gray-400 text-center">No recipes added to the list yet.</h2>
+      }
     </section>
   </main>
 
