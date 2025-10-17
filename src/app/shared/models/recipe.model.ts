@@ -24,7 +24,7 @@ export interface IRecipeDetail {
   }
 }
 
-export interface IRecipeStorage {
+export interface IRecipeWishlist {
   recipe: string;
   title: string;
   url: string;

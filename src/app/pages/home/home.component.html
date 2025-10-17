@@ -61,23 +61,24 @@
           }
         </div>
 
-        <button class="flex gap-x-2 p-3 self-center bg-orange-400 text-white rounded-full shadow-md cursor-pointer hover:bg-orange-500 transition"
-                (click)="addToShoppingList(recipeDetail?.recipe?.title, recipeDetail?.recipe?.source_url)">
-          <img src="./icons/shopping-cart.png" alt="Shopping cart icon" class="w-6 h-6">
-          <p>Add to Shopping List</p>
+        <button class="flex items-center gap-x-2 p-3 self-center bg-orange-400 text-white rounded-full shadow-md cursor-pointer hover:bg-orange-500 transition"
+                (click)="addToWishlist(recipeDetail?.recipe?.title, recipeDetail?.recipe?.source_url)">
+          <img src="./icons/wishlist.png" alt="Wishlist icon" class="w-4 h-4">
+          <p>Add to your Wishlist</p>
+          <img src="./icons/wishlist.png" alt="Wishlist icon" class="w-4 h-4">
         </button>
       </section>
     }
 
-    <!--  Shopping List  -->
+    <!--  Wishlist  -->
     <section class="w-full lg:w-1/4 lg:h-full overflow-y-auto p-4"
              [ngClass]="{'h-auto': !recipes,
                          'h-2/3': recipes}">
-      <h1 class="text-2xl text-orange-400 font-bold text-center">My Shopping List</h1>
+      <h1 class="text-2xl text-orange-400 font-bold text-center">My Wishlist</h1>
 
-      @if (shoppingList.length) {
+      @if (wishlist.length) {
         <ul class="px-4">
-          @for (recipe of shoppingList; let i = $index; track recipe) {
+          @for (recipe of wishlist; let i = $index; track recipe) {
             <li class="flex items-center justify-between gap-y-3 p-2 my-4 border border-gray-300 rounded-lg">
               <div class="self-start flex flex-col gap-2 max-w-[85%]">
                 <h2 class="text-base lg:text-lg text-orange-400 truncate">{{ recipe.title }}</h2>
@@ -90,7 +91,7 @@
               </div>
 
               <button class="p-2 text-white rounded-full cursor-pointer hover:bg-gray-200 transition"
-                      (click)="removeFromShoppingList(i)">
+                      (click)="removeFromWishlist(i)">
                 <img src="./icons/trash-can.png" alt="Trash icon" class="w-5 h-5 lg:w-6 lg:h-6">
               </button>
             </li>

@@ -6,7 +6,7 @@ import {LoaderService} from '../../shared/services/loader.service';
 import {SnackBarService} from '../../shared/services/snack-bar.service';
 import {LoaderComponent} from '../../shared/components/loader/loader.component';
 import {SnackBarComponent} from '../../shared/components/snack-bar/snack-bar.component';
-import {IRecipe, IRecipeDetail, IRecipeStorage, recipes} from '../../shared/models/recipe.model';
+import {IRecipe, IRecipeDetail, IRecipeWishlist, recipes} from '../../shared/models/recipe.model';
 import {firstValueFrom} from 'rxjs';
 import {DecimalPipe, NgClass} from '@angular/common';
 
@@ -27,7 +27,7 @@ export class HomeComponent {
     protected currentRecipe: string | HTMLInputElement = '';
     protected recipes: IRecipe | null = null;
     protected recipeDetail: IRecipeDetail | null = null;
-    protected shoppingList: IRecipeStorage[] = localStorage.getItem('shoppingList') ? JSON.parse(localStorage.getItem('shoppingList') || '[]') : [];
+    protected wishlist: IRecipeWishlist[] = localStorage.getItem('wishlist') ? JSON.parse(localStorage.getItem('wishlist') || '[]') : [];
 
     constructor(private recipeService: RecipeService,
                 private loaderService: LoaderService,
@@ -63,21 +63,21 @@ export class HomeComponent {
         }
     }
 
-    protected addToShoppingList(title: string | undefined, url: string | undefined) {
-        const list = JSON.parse(localStorage.getItem('shoppingList') || '[]');
-        const alreadyExists = list.some((item: IRecipeStorage) => item.title === title);
+    protected addToWishlist(title: string | undefined, url: string | undefined) {
+        const list = JSON.parse(localStorage.getItem('wishlist') || '[]');
+        const alreadyExists = list.some((item: IRecipeWishlist) => item.title === title);
 
-        if (alreadyExists) return this.snackBarService.show('Recipe already exists in shopping list.', 'warning');
+        if (alreadyExists) return this.snackBarService.show('Recipe already exists in wishlist.', 'warning');
 
         const newList = [...list, { recipe: this.currentRecipe, title, url }];
-        localStorage.setItem('shoppingList', JSON.stringify(newList));
-        this.shoppingList = newList;
+        localStorage.setItem('wishlist', JSON.stringify(newList));
+        this.wishlist = newList;
     }
 
-    protected removeFromShoppingList(index: number) {
-        const list = JSON.parse(localStorage.getItem('shoppingList') || '[]');
+    protected removeFromWishlist(index: number) {
+        const list = JSON.parse(localStorage.getItem('wishlist') || '[]');
         list.splice(index, 1);
-        localStorage.setItem('shoppingList', JSON.stringify(list));
-        this.shoppingList = list;
+        localStorage.setItem('wishlist', JSON.stringify(list));
+        this.wishlist = list;
     }
 }
