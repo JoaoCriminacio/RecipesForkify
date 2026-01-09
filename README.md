@@ -1,5 +1,5 @@
 <h1 align="center"> Recipes Forkify </h1>
-<p align="center">This project is a recipe website that uses de Forkify API to obtain the data. Also, you can use Local Storage to save your favorite recipes.</p>
+<p align="center">This project is a recipe website that uses the Forkify API to obtain the data. Also, you can use Local Storage to save your favorite recipes.</p>
 <img width="1920" height="945" alt="image" src="https://github.com/user-attachments/assets/612ffd8b-4e03-497b-80a3-85a0d36150d7" />
 
 ## 🛠 Technologies
